@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoReality", "NeoReality.csproj", "{BD156C22-A111-B06D-E7F2-28B60543843A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoReality.Plugins", "NeoReality.Plugins.csproj", "{B96D0BE6-1EB1-FD1A-9F61-E623CFB56BF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoReality.Editor.Plugins", "NeoReality.Editor.Plugins.csproj", "{F034B623-FB13-D77F-F619-24D681187DB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoReality.Editor", "NeoReality.Editor.csproj", "{2FE45F6A-C662-73EC-63D8-EFB8981EB0D4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BD156C22-A111-B06D-E7F2-28B60543843A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD156C22-A111-B06D-E7F2-28B60543843A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD156C22-A111-B06D-E7F2-28B60543843A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD156C22-A111-B06D-E7F2-28B60543843A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B96D0BE6-1EB1-FD1A-9F61-E623CFB56BF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B96D0BE6-1EB1-FD1A-9F61-E623CFB56BF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B96D0BE6-1EB1-FD1A-9F61-E623CFB56BF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B96D0BE6-1EB1-FD1A-9F61-E623CFB56BF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F034B623-FB13-D77F-F619-24D681187DB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F034B623-FB13-D77F-F619-24D681187DB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F034B623-FB13-D77F-F619-24D681187DB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F034B623-FB13-D77F-F619-24D681187DB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FE45F6A-C662-73EC-63D8-EFB8981EB0D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FE45F6A-C662-73EC-63D8-EFB8981EB0D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FE45F6A-C662-73EC-63D8-EFB8981EB0D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FE45F6A-C662-73EC-63D8-EFB8981EB0D4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

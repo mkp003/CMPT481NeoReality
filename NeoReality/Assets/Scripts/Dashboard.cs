@@ -21,9 +21,6 @@ public class Dashboard : MonoBehaviour, IVRButton
 
     private List<GameObject> pendingDeletion = new List<GameObject>();
 
-	// The file system to load images with
-	public FileBrowser fileBrowser;
-
 	// Creates a display object in dashboard
 	public Display display;
 
@@ -280,7 +277,6 @@ public class Dashboard : MonoBehaviour, IVRButton
 	private void Load()
 	{
         Debug.Log("Load Button clicked");
-		fileBrowser.gameObject.SetActive(true);
 		Minimize();
 	}
 

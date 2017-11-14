@@ -141,6 +141,7 @@
     <Compile Include="Assets\Scripts\Dashboard.cs" />
     <Compile Include="Assets\Scripts\Display.cs" />
     <Compile Include="Assets\Scripts\DisplayImage.cs" />
+    <Compile Include="Assets\Scripts\ExperimentManager.cs" />
     <Compile Include="Assets\Scripts\InvokeTest.cs" />
     <Compile Include="Assets\Scripts\IVRButton.cs" />
     <Compile Include="Assets\Scripts\IVRSlider.cs" />

@@ -16,6 +16,8 @@ public class ExperimentManager : MonoBehaviour {
     [SerializeField]
     private GameObject playObj3;
 
+
+
     // Lights for the room
     [SerializeField]
     private GameObject light1;
@@ -28,28 +30,25 @@ public class ExperimentManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         Invoke("ExitSandbox", 10);
-        print("end of start");
 	}
 
     private void FixedUpdate()
     {
         if (turnningOff)
         {
-            light1.GetComponent<Light>().intensity -= 0.0005f;
-            light2.GetComponent<Light>().intensity -= 0.0005f;
+            light1.GetComponent<Light>().intensity -= 0.0006f;
+            light2.GetComponent<Light>().intensity -= 0.0006f;
         }
         if (turnningOn)
         {
-            light1.GetComponent<Light>().intensity += 0.0005f;
-            light2.GetComponent<Light>().intensity += 0.0005f;
+            light1.GetComponent<Light>().intensity += 0.0006f;
+            light2.GetComponent<Light>().intensity += 0.0006f;
         }
     }
 
     private void ExitSandbox()
     {
-        print("Invoke method exit called.");
         turnningOff = true;
-        print("inital value: " + light1.GetComponent<Light>().intensity);
         Invoke("OpenTests", 10);
     }
 
@@ -57,12 +56,10 @@ public class ExperimentManager : MonoBehaviour {
     {
         turnningOff = false;
         turnningOn = true;
-        print("new value: " + light1.GetComponent<Light>().intensity);
-        print("opening tests");
-        //table.SetActive(false);
-        //playObj1.SetActive(false);
-        //playObj2.SetActive(false);
-        //playObj3.SetActive(false);
+        table.SetActive(false);
+        playObj1.SetActive(false);
+        playObj2.SetActive(false);
+        playObj3.SetActive(false);
         Invoke("TurnOffBrightness", 10);
     }
 

@@ -3,7 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
+
 public class NumberPad : MonoBehaviour {
+
+    // Reference to the controller
+    [SerializeField]
+    private GameObject experimentManager;
 
     // The path to the storage directory
     public string filePath;
@@ -41,19 +46,23 @@ public class NumberPad : MonoBehaviour {
     /// <summary>
     /// Grab the end time for this test
     /// </summary>
-    public void EndTimer(bool newFile)
+    public void EndTimer(string[] newFile)
     {
         this.endTime = Time.time;
-        EndTest(newFile);
+        bool createNewFile;
+        bool.TryParse(newFile[0], out createNewFile);
+        EndTest(createNewFile);
+        this.experimentManager.SendMessage("SubmitCurrentTest");
     }
 
     /// <summary>
     /// Adds the input from the button to the list of user inputs
     /// </summary>
     /// <param name="input"></param>
-	public void ButtonInput(string input)
+	public void ButtonInput(string[] input)
     {
-        this.buttonInput.Add(input);
+        print("Keypad recieved input: " + input);
+        this.buttonInput.Add(input[0]);
     }
 
 
@@ -102,14 +111,18 @@ public class NumberPad : MonoBehaviour {
     {
         // Find the existing files and create a new one with the next id number if necessary
         DirectoryInfo dir = new DirectoryInfo(filePath);
+        print(this.filePath);
+        
         FileInfo[] info = dir.GetFiles("*.csv");
 
         int lastFile = 0;
 
         foreach (FileInfo f in info)
         {
-            string name = f.ToString();
+            string name = f.Name;
+            print(name);
             string number = name.Substring(5, 3);
+            print(number);
             int fileNum = int.Parse(number);
 
             if(fileNum > lastFile)
@@ -137,14 +150,16 @@ public class NumberPad : MonoBehaviour {
 
         if (newFile)
         {
-            string header = "Test Number" + ',' + "Speed" + ',' + "Accuracy";
+            string header = "Test Number" + ',' + "Speed" + ',' + "Accuracy" + System.Environment.NewLine;
 
-            File.WriteAllText(newFileName, header);
+            File.WriteAllText(this.filePath + newFileName, header);
         }
 
-        string data = testNum.ToString() + ',' + speed.ToString() + ',' + accuracy.ToString();
+        string data = testNum.ToString() + ',' + speed.ToString() + ',' + accuracy.ToString() + System.Environment.NewLine;
 
-        File.AppendAllText(newFileName, data);
+        File.AppendAllText(this.filePath + newFileName, data);
+
+        print(newFileName);
 
     }
 

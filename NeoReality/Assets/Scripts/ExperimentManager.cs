@@ -16,8 +16,6 @@ public class ExperimentManager : MonoBehaviour {
     [SerializeField]
     private GameObject playObj3;
 
-
-
     // Lights for the room
     [SerializeField]
     private GameObject light1;
@@ -26,9 +24,22 @@ public class ExperimentManager : MonoBehaviour {
     private bool turnningOn = false;
     private bool turnningOff = false;
 
+    // Objects for the test
+    [SerializeField]
+    private GameObject conveyerBelt;
+    [SerializeField]
+    private GameObject testSwitch;
+
+    [SerializeField]
+    private List<GameObject> listOfTests = new List<GameObject>();
+
+
+    private GameObject currentTest;
+
 
     // Use this for initialization
     void Start () {
+        currentTest = listOfTests[0];
         Invoke("ExitSandbox", 10);
 	}
 
@@ -66,5 +77,21 @@ public class ExperimentManager : MonoBehaviour {
     private void TurnOffBrightness()
     {
         this.turnningOn = false;
+    }
+
+    private void RetrieveNextTest()
+    {
+        if (listOfTests.Count > 0)
+        {
+            currentTest = listOfTests[0];
+            currentTest.SetActive(true);
+            listOfTests.RemoveAt(0);
+            currentTest.SendMessage("StartTimer");
+        }
+    }
+
+    private void SubmitCurrentTest()
+    {
+        this.currentTest.SetActive(false);
     }
 }

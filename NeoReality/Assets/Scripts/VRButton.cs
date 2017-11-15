@@ -52,6 +52,11 @@ public class VRButton : MonoBehaviour
         defaultLocalScale = gameObject.transform.localScale;
     }
 
+    private void Start()
+    {
+        defaultLocalScale = gameObject.transform.localScale;
+    }
+
 
     /// <summary>
     /// Reset the position of the button

@@ -33,8 +33,10 @@ public class ExperimentManager : MonoBehaviour {
     {
         print("Invoke method exit called.");
         print("inital value: " + light1.GetComponent<Light>().intensity);
-        light1.GetComponent<Light>().intensity = Mathf.MoveTowards(light1.GetComponent<Light>().intensity, 0f, 0.1f);
-        light2.GetComponent<Light>().intensity = Mathf.MoveTowards(light2.GetComponent<Light>().intensity, 0f, 0.1f);
+        while (light1.GetComponent<Light>().intensity > 0) {
+            light1.GetComponent<Light>().intensity = Mathf.MoveTowards(0.3f, 0f, Time.deltaTime);
+            light2.GetComponent<Light>().intensity = Mathf.MoveTowards(0.3f, 0f, Time.deltaTime);
+        }
         Invoke("OpenTests", 10);
     }
 
@@ -42,11 +44,11 @@ public class ExperimentManager : MonoBehaviour {
     {
         print("new value: " + light1.GetComponent<Light>().intensity);
         print("opening tests");
-        table.SetActive(false);
+        //table.SetActive(false);
         //playObj1.SetActive(false);
         //playObj2.SetActive(false);
         //playObj3.SetActive(false);
-        Mathf.Lerp(light1.GetComponent<Light>().intensity, 0.3f, Time.deltaTime);
-        Mathf.Lerp(light2.GetComponent<Light>().intensity, 0.3f, Time.deltaTime);
+        Mathf.Lerp(0, 0.3f, Time.deltaTime);
+        Mathf.Lerp(0, 0.3f, Time.deltaTime);
     }
 }

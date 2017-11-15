@@ -145,6 +145,7 @@
     <Compile Include="Assets\Scripts\InvokeTest.cs" />
     <Compile Include="Assets\Scripts\IVRButton.cs" />
     <Compile Include="Assets\Scripts\IVRSlider.cs" />
+    <Compile Include="Assets\Scripts\NumberPad.cs" />
     <Compile Include="Assets\Scripts\SliderBar.cs" />
     <Compile Include="Assets\Scripts\SliderKnob.cs" />
     <Compile Include="Assets\Scripts\Thumbnail.cs" />

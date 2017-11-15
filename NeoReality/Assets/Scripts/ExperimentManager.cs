@@ -21,6 +21,8 @@ public class ExperimentManager : MonoBehaviour {
     private GameObject light1;
     [SerializeField]
     private GameObject light2;
+    private bool turnningOn = false;
+    private bool turnningOff = false;
 
 
     // Use this for initialization
@@ -29,26 +31,43 @@ public class ExperimentManager : MonoBehaviour {
         print("end of start");
 	}
 
+    private void FixedUpdate()
+    {
+        if (turnningOff)
+        {
+            light1.GetComponent<Light>().intensity -= 0.0005f;
+            light2.GetComponent<Light>().intensity -= 0.0005f;
+        }
+        if (turnningOn)
+        {
+            light1.GetComponent<Light>().intensity += 0.0005f;
+            light2.GetComponent<Light>().intensity += 0.0005f;
+        }
+    }
+
     private void ExitSandbox()
     {
         print("Invoke method exit called.");
+        turnningOff = true;
         print("inital value: " + light1.GetComponent<Light>().intensity);
-        while (light1.GetComponent<Light>().intensity > 0) {
-            light1.GetComponent<Light>().intensity = Mathf.MoveTowards(0.3f, 0f, Time.deltaTime);
-            light2.GetComponent<Light>().intensity = Mathf.MoveTowards(0.3f, 0f, Time.deltaTime);
-        }
         Invoke("OpenTests", 10);
     }
 
     private void OpenTests()
     {
+        turnningOff = false;
+        turnningOn = true;
         print("new value: " + light1.GetComponent<Light>().intensity);
         print("opening tests");
         //table.SetActive(false);
         //playObj1.SetActive(false);
         //playObj2.SetActive(false);
         //playObj3.SetActive(false);
-        Mathf.Lerp(0, 0.3f, Time.deltaTime);
-        Mathf.Lerp(0, 0.3f, Time.deltaTime);
+        Invoke("TurnOffBrightness", 10);
+    }
+
+    private void TurnOffBrightness()
+    {
+        this.turnningOn = false;
     }
 }

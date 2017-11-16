@@ -17,10 +17,13 @@ public class ExperimentManager : MonoBehaviour {
     private GameObject playObj3;
 
     // Lights for the room
+    //[SerializeField]
+    //private GameObject light1;
+    //[SerializeField]
+    //private GameObject light2;
     [SerializeField]
-    private GameObject light1;
-    [SerializeField]
-    private GameObject light2;
+    private GameObject light;
+
     private bool turnningOn = false;
     private bool turnningOff = false;
 
@@ -47,13 +50,13 @@ public class ExperimentManager : MonoBehaviour {
     {
         if (turnningOff)
         {
-            light1.GetComponent<Light>().intensity -= 0.0006f;
-            light2.GetComponent<Light>().intensity -= 0.0006f;
+            light.GetComponent<Light>().intensity -= 0.0041f;
+            //light2.GetComponent<Light>().intensity -= 0.0006f;
         }
         if (turnningOn)
         {
-            light1.GetComponent<Light>().intensity += 0.0006f;
-            light2.GetComponent<Light>().intensity += 0.0006f;
+            light.GetComponent<Light>().intensity += 0.0041f;
+            //light2.GetComponent<Light>().intensity += 0.0006f;
         }
     }
 

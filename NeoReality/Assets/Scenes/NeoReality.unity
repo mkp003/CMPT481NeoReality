@@ -928,6 +928,10 @@ Prefab:
       propertyPath: feedback
       value: Push
       objectReference: {fileID: 0}
+    - target: {fileID: 1027852834621220, guid: 12381ef112b90ec47bdfc7fd08a88333, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 12381ef112b90ec47bdfc7fd08a88333, type: 2}
   m_IsPrefabParent: 0
@@ -1333,56 +1337,6 @@ Prefab:
       propertyPath: experimentManager
       value: 
       objectReference: {fileID: 346309241}
-    - target: {fileID: 114252828315304528, guid: d1ca611625cff09458022787cfcbb27f,
-        type: 2}
-      propertyPath: feedback
-      value: Push
-      objectReference: {fileID: 0}
-    - target: {fileID: 114126073289372760, guid: d1ca611625cff09458022787cfcbb27f,
-        type: 2}
-      propertyPath: feedback
-      value: Push
-      objectReference: {fileID: 0}
-    - target: {fileID: 114679253670529066, guid: d1ca611625cff09458022787cfcbb27f,
-        type: 2}
-      propertyPath: feedback
-      value: Push
-      objectReference: {fileID: 0}
-    - target: {fileID: 114047726695174612, guid: d1ca611625cff09458022787cfcbb27f,
-        type: 2}
-      propertyPath: feedback
-      value: Push
-      objectReference: {fileID: 0}
-    - target: {fileID: 114587138388170382, guid: d1ca611625cff09458022787cfcbb27f,
-        type: 2}
-      propertyPath: feedback
-      value: Push
-      objectReference: {fileID: 0}
-    - target: {fileID: 114556208548464564, guid: d1ca611625cff09458022787cfcbb27f,
-        type: 2}
-      propertyPath: feedback
-      value: Push
-      objectReference: {fileID: 0}
-    - target: {fileID: 114911557380031388, guid: d1ca611625cff09458022787cfcbb27f,
-        type: 2}
-      propertyPath: feedback
-      value: Push
-      objectReference: {fileID: 0}
-    - target: {fileID: 114081476377967102, guid: d1ca611625cff09458022787cfcbb27f,
-        type: 2}
-      propertyPath: feedback
-      value: Push
-      objectReference: {fileID: 0}
-    - target: {fileID: 114647994388813634, guid: d1ca611625cff09458022787cfcbb27f,
-        type: 2}
-      propertyPath: feedback
-      value: Push
-      objectReference: {fileID: 0}
-    - target: {fileID: 114781689527123054, guid: d1ca611625cff09458022787cfcbb27f,
-        type: 2}
-      propertyPath: feedback
-      value: Push
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d1ca611625cff09458022787cfcbb27f, type: 2}
   m_IsPrefabParent: 0
@@ -2051,6 +2005,10 @@ Prefab:
         type: 2}
       propertyPath: feedback
       value: Push
+      objectReference: {fileID: 0}
+    - target: {fileID: 1378247510369792, guid: fa7a572bb0cf1cb4781f7720f01f7436, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fa7a572bb0cf1cb4781f7720f01f7436, type: 2}

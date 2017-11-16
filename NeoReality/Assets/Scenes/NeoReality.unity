@@ -1337,6 +1337,10 @@ Prefab:
       propertyPath: experimentManager
       value: 
       objectReference: {fileID: 346309241}
+    - target: {fileID: 1929328226086602, guid: d1ca611625cff09458022787cfcbb27f, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d1ca611625cff09458022787cfcbb27f, type: 2}
   m_IsPrefabParent: 0
@@ -3056,6 +3060,15 @@ Prefab:
       propertyPath: feedback
       value: Push
       objectReference: {fileID: 0}
+    - target: {fileID: 1733446443956526, guid: 16a81139ac792bb45a1a29219c0debf5, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 23711449235794016, guid: 16a81139ac792bb45a1a29219c0debf5,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 865eb26f90c37b441a5bf7e08f1dbdb9, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16a81139ac792bb45a1a29219c0debf5, type: 2}
   m_IsPrefabParent: 0

@@ -38,6 +38,10 @@ public class VRButton : MonoBehaviour
     // Default colour
     private Color defaultMaterial;
 
+    // Audio feedback
+    [SerializeField]
+    private AudioSource sound;
+
 
 
     /// <summary>
@@ -68,6 +72,7 @@ public class VRButton : MonoBehaviour
     {
         defaultLocalScale = gameObject.transform.localScale;
         defaultMaterial = this.GetComponent<MeshRenderer>().materials[0].color;
+        sound = this.GetComponent<AudioSource>();
     }
 
 
@@ -194,7 +199,7 @@ public class VRButton : MonoBehaviour
         }
         else if (this.feedback == "Audio")
         {
-
+            this.sound.Play();
         }
         else
         {

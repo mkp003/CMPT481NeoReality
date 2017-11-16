@@ -40,7 +40,7 @@ public class ExperimentManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         currentTest = listOfTests[0];
-        Invoke("ExitSandbox", 10);
+        Invoke("ExitSandbox", 1);
 	}
 
     private void FixedUpdate()
@@ -71,6 +71,7 @@ public class ExperimentManager : MonoBehaviour {
         playObj1.SetActive(false);
         playObj2.SetActive(false);
         playObj3.SetActive(false);
+        testSwitch.SetActive(true);
         Invoke("TurnOffBrightness", 10);
     }
 
@@ -81,12 +82,18 @@ public class ExperimentManager : MonoBehaviour {
 
     private void RetrieveNextTest()
     {
-        if (listOfTests.Count > 0)
+        if (listOfTests.Count > 0 && !this.currentTest.activeInHierarchy)
         {
             currentTest = listOfTests[0];
             currentTest.SetActive(true);
             listOfTests.RemoveAt(0);
-            currentTest.SendMessage("StartTimer");
+            currentTest.SetActive(true);
+            //currentTest.SendMessage("StartTimer");
+            this.currentTest.GetComponent<NumberPad>().StartTimer();
+        }
+        if(listOfTests.Count == 0)
+        {
+            //Test is done, put finishing code here!
         }
     }
 

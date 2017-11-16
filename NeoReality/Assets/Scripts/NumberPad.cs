@@ -84,21 +84,31 @@ public class NumberPad : MonoBehaviour {
     /// <returns>The calculated accuracy for this test</returns>
     public float CalculateAccuracy()
     {
-        int numEntered = this.buttonInput.Count;
+        float numEntered = this.buttonInput.Count;
 
-        int numCorrect = 0;
+        float numCorrect = 0;
 
         int currentAnswer = 0;
 
-        foreach (string answer in buttonInput){
-            if (correctSequence[currentAnswer].Equals(answer))
-            {
-                numCorrect += 1;
-                currentAnswer++;
-            }    
-        }
+        // Check if the user actually inputed any values. If not, their accuracy is 0.
+        if (numEntered > 0)
+        {
 
-        return numCorrect / numEntered;
+            foreach (string answer in buttonInput)
+            {
+                if (correctSequence[currentAnswer].Equals(answer))
+                {
+                    numCorrect += 1;
+                    currentAnswer++;
+                }
+            }
+
+            return numCorrect / numEntered;
+        }
+        else
+        {
+            return 0;
+        }
 
     }
 

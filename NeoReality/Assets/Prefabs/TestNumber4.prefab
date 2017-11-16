@@ -26,7 +26,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1093089562172120
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,7 +585,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1027852834621220}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.114, y: -0.342, z: 0.527758}
+  m_LocalPosition: {x: 0.114, y: -0.342, z: 0.22600001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4627468308343792}
@@ -797,7 +797,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 533b71c3499470842aa2b835ff61ab77, type: 2}
+  - {fileID: 2100000, guid: 5a902883e18181c4cafdfb79cb4d00f0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -861,7 +861,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 533b71c3499470842aa2b835ff61ab77, type: 2}
+  - {fileID: 2100000, guid: 5a902883e18181c4cafdfb79cb4d00f0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -893,7 +893,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 533b71c3499470842aa2b835ff61ab77, type: 2}
+  - {fileID: 2100000, guid: 5a902883e18181c4cafdfb79cb4d00f0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -957,7 +957,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 533b71c3499470842aa2b835ff61ab77, type: 2}
+  - {fileID: 2100000, guid: 5a902883e18181c4cafdfb79cb4d00f0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1021,7 +1021,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 533b71c3499470842aa2b835ff61ab77, type: 2}
+  - {fileID: 2100000, guid: 5a902883e18181c4cafdfb79cb4d00f0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1085,7 +1085,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 533b71c3499470842aa2b835ff61ab77, type: 2}
+  - {fileID: 2100000, guid: 5a902883e18181c4cafdfb79cb4d00f0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1117,7 +1117,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 533b71c3499470842aa2b835ff61ab77, type: 2}
+  - {fileID: 2100000, guid: 5a902883e18181c4cafdfb79cb4d00f0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1181,7 +1181,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 533b71c3499470842aa2b835ff61ab77, type: 2}
+  - {fileID: 2100000, guid: 5a902883e18181c4cafdfb79cb4d00f0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1245,7 +1245,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 533b71c3499470842aa2b835ff61ab77, type: 2}
+  - {fileID: 2100000, guid: 5a902883e18181c4cafdfb79cb4d00f0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1277,7 +1277,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 533b71c3499470842aa2b835ff61ab77, type: 2}
+  - {fileID: 2100000, guid: 5a902883e18181c4cafdfb79cb4d00f0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2057,6 +2057,9 @@ MonoBehaviour:
     - 9
   manager: {fileID: 1027852834621220}
   textObject: {fileID: 0}
+  feedback: Push
+  altMaterial: {fileID: 0}
+  sound: {fileID: 0}
 --- !u!114 &114155663306847910
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2099,6 +2102,9 @@ MonoBehaviour:
     - 8
   manager: {fileID: 1027852834621220}
   textObject: {fileID: 0}
+  feedback: Push
+  altMaterial: {fileID: 0}
+  sound: {fileID: 0}
 --- !u!114 &114275325220831278
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2122,6 +2128,9 @@ MonoBehaviour:
     - 3
   manager: {fileID: 1027852834621220}
   textObject: {fileID: 0}
+  feedback: Push
+  altMaterial: {fileID: 0}
+  sound: {fileID: 0}
 --- !u!114 &114347466630235672
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2145,6 +2154,9 @@ MonoBehaviour:
     - 7
   manager: {fileID: 1027852834621220}
   textObject: {fileID: 0}
+  feedback: Push
+  altMaterial: {fileID: 0}
+  sound: {fileID: 0}
 --- !u!114 &114466215909912276
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2168,6 +2180,9 @@ MonoBehaviour:
     - 5
   manager: {fileID: 1027852834621220}
   textObject: {fileID: 0}
+  feedback: Push
+  altMaterial: {fileID: 0}
+  sound: {fileID: 0}
 --- !u!114 &114658891521617396
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2191,6 +2206,9 @@ MonoBehaviour:
     - 1
   manager: {fileID: 1027852834621220}
   textObject: {fileID: 0}
+  feedback: Push
+  altMaterial: {fileID: 0}
+  sound: {fileID: 0}
 --- !u!114 &114768552616280842
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2214,6 +2232,9 @@ MonoBehaviour:
     - 4
   manager: {fileID: 1027852834621220}
   textObject: {fileID: 0}
+  feedback: Push
+  altMaterial: {fileID: 0}
+  sound: {fileID: 0}
 --- !u!114 &114809652216331472
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2237,6 +2258,9 @@ MonoBehaviour:
     - 2
   manager: {fileID: 1027852834621220}
   textObject: {fileID: 0}
+  feedback: Push
+  altMaterial: {fileID: 0}
+  sound: {fileID: 0}
 --- !u!114 &114880333528458514
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2260,6 +2284,9 @@ MonoBehaviour:
     - 6
   manager: {fileID: 1027852834621220}
   textObject: {fileID: 0}
+  feedback: Push
+  altMaterial: {fileID: 0}
+  sound: {fileID: 0}
 --- !u!114 &114940483601531616
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2283,3 +2310,6 @@ MonoBehaviour:
     - False
   manager: {fileID: 1027852834621220}
   textObject: {fileID: 0}
+  feedback: Push
+  altMaterial: {fileID: 0}
+  sound: {fileID: 0}

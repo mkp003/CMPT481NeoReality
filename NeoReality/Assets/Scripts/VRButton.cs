@@ -31,6 +31,14 @@ public class VRButton : MonoBehaviour
     [SerializeField]
     private string feedback;
 
+    // Alternative colour
+    [SerializeField]
+    private Material altMaterial;
+
+    // Default colour
+    private Color defaultMaterial;
+
+
 
     /// <summary>
     /// Constructor for the button
@@ -59,6 +67,7 @@ public class VRButton : MonoBehaviour
     private void Start()
     {
         defaultLocalScale = gameObject.transform.localScale;
+        defaultMaterial = this.GetComponent<MeshRenderer>().materials[0].color;
     }
 
 
@@ -180,7 +189,8 @@ public class VRButton : MonoBehaviour
     {
         if (this.feedback == "Colour")
         {
-
+            print("Changing colour");
+            this.GetComponent<MeshRenderer>().materials[0].color = this.altMaterial.color;
         }
         else if (this.feedback == "Audio")
         {
@@ -201,11 +211,11 @@ public class VRButton : MonoBehaviour
     {
         if (this.feedback == "Colour")
         {
-
+            this.GetComponent<MeshRenderer>().materials[0].color = this.defaultMaterial;
         }
         else if (this.feedback == "Audio")
         {
-            // Nothing to do for audio
+            // Nothing 
         }
         else
         {

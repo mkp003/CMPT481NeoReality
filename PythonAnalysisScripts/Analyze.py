@@ -32,7 +32,8 @@ def separate_datasets(dataframes):
     '''
     Separate the data in the dataframes into different datasets based on trial number
     :param dataframes: A list of dataframes to parse from
-    :return: A list of datasets indexed by their trial number
+    :return: A dictionary of lists In the format
+     {Design: [trial0, trial1, trial2], Texture: [trial3, trial4, trial5], Feedback: [trial6, trial 7, trial 8]}
     '''
     pass
 
@@ -46,7 +47,7 @@ def perform_statistical_analysis(datasets):
 
     # TODO: perfrom the kruskal wallis test using scipy.stats and write to stats file
 
-    # TODO: get mean and S.D for each trial - append to stats file
+    # TODO: get mean and S.D for each trial - append to stats file named by dictionary key
 
     # TODO: For each trial perform a Mann-Whitney test using scipy.stats - append to stats file
 
@@ -66,5 +67,20 @@ def write_new_dataset_csv(datasets):
 
 def main():
     pass
+
+# TODO: get command line options
+
+# TODO: get all csvs
+
+# TODO: convert to dataframes
+
+# TODO: seperate datasets
+
+# TODO: perform statistical analysis for designs
+
+# TODO: perfrom stat analysis for textures
+
+# TODO: perform stat analysis for feedback
+
 if __name__ == "__main__":
     main()

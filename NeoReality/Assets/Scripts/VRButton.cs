@@ -27,6 +27,10 @@ public class VRButton : MonoBehaviour
     // Buttons state
     private bool pressed = false;
 
+    // Feedback type
+    [SerializeField]
+    private string feedback;
+
 
     /// <summary>
     /// Constructor for the button
@@ -174,7 +178,18 @@ public class VRButton : MonoBehaviour
     /// </summary>
     private void DepressButton()
     {
-        gameObject.transform.localScale = new Vector3(this.defaultLocalScale.x, this.defaultLocalScale.y, (this.defaultLocalScale.z/2f));
+        if (this.feedback == "Colour")
+        {
+
+        }
+        else if (this.feedback == "Audio")
+        {
+
+        }
+        else
+        {
+            gameObject.transform.localScale = new Vector3(this.defaultLocalScale.x, this.defaultLocalScale.y, (this.defaultLocalScale.z / 2f));
+        }
         
     }
 
@@ -184,7 +199,18 @@ public class VRButton : MonoBehaviour
     /// </summary>
     public void UnpressButton()
     {
-        gameObject.transform.localScale = this.defaultLocalScale;
+        if (this.feedback == "Colour")
+        {
+
+        }
+        else if (this.feedback == "Audio")
+        {
+            // Nothing to do for audio
+        }
+        else
+        {
+            gameObject.transform.localScale = this.defaultLocalScale;
+        }
     }
 
 

@@ -42,7 +42,28 @@ public class VRButton : MonoBehaviour
     [SerializeField]
     private AudioSource sound;
 
+    private bool pushIn = false;
+    private bool pushout = false;
 
+    private Vector3 originalPos;
+
+
+    private void FixedUpdate()
+    {
+        if (pushIn)
+        {
+            this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z + 0.01f);
+        }
+
+        if (pushout)
+        {
+            if (this.transform.position.z > this.originalPos.z)
+            {
+                this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z - 0.01f);
+            }
+
+        }
+    }
 
     /// <summary>
     /// Constructor for the button
@@ -73,6 +94,7 @@ public class VRButton : MonoBehaviour
         defaultLocalScale = gameObject.transform.localScale;
         defaultMaterial = this.GetComponent<MeshRenderer>().materials[0].color;
         sound = this.GetComponent<AudioSource>();
+        this.originalPos = this.transform.position;
     }
 
 
@@ -201,6 +223,11 @@ public class VRButton : MonoBehaviour
         {
             this.sound.Play();
         }
+        else if (this.feedback == "Animation")
+        {
+            pushIn = true;
+
+        }
         else
         {
             gameObject.transform.localScale = new Vector3(this.defaultLocalScale.x, this.defaultLocalScale.y, (this.defaultLocalScale.z / 2f));
@@ -222,6 +249,13 @@ public class VRButton : MonoBehaviour
         {
             // Nothing 
         }
+        else if (this.feedback == "Animation")
+        {
+            pushIn = false;
+            pushout = true;
+            Invoke("EndPushout", 0.3f);
+
+        }
         else
         {
             gameObject.transform.localScale = this.defaultLocalScale;
@@ -234,6 +268,11 @@ public class VRButton : MonoBehaviour
     /// </summary>
     public void TimedUnpress()
     {
-        Invoke("UnpressButton", 0.5f);
+        Invoke("UnpressButton", 0.2f);
+    }
+
+    public void EndPushout()
+    {
+        pushout = false;
     }
 }

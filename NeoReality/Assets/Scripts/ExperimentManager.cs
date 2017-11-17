@@ -8,13 +8,7 @@ public class ExperimentManager : MonoBehaviour {
     // Objects that will be used in the demo part of the game, to familiarize
     // users with VR are listed below.
     [SerializeField]
-    private GameObject table;
-    [SerializeField]
-    private GameObject playObj1;
-    [SerializeField]
-    private GameObject playObj2;
-    [SerializeField]
-    private GameObject playObj3;
+    private GameObject demoObjects;
 
     // Lights for the room
     //[SerializeField]
@@ -43,7 +37,7 @@ public class ExperimentManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         currentTest = listOfTests[0];
-        Invoke("ExitSandbox", 1);
+        Invoke("ExitSandbox", 3);
 	}
 
     private void FixedUpdate()
@@ -70,10 +64,7 @@ public class ExperimentManager : MonoBehaviour {
     {
         turnningOff = false;
         turnningOn = true;
-        table.SetActive(false);
-        playObj1.SetActive(false);
-        playObj2.SetActive(false);
-        playObj3.SetActive(false);
+        demoObjects.SetActive(false);
         testSwitch.SetActive(true);
         Invoke("TurnOffBrightness", 10);
     }

@@ -45,7 +45,7 @@ public class TouchAndGrab : MonoBehaviour
     private bool onCooldown = false;
 
 	[SerializeField]
-	private float cooldownDuration = 1f;
+	private float cooldownDuration = 0.005f;
 
     // previous parent of grabbed object
 	private Transform objectsOldParent = null;
@@ -130,7 +130,7 @@ public class TouchAndGrab : MonoBehaviour
 		_grabbedObject = closest;
 		_grabbedObject.GetComponent<Rigidbody>().isKinematic = true;
 		this.objectsOldParent = _grabbedObject.transform.parent;
-		_grabbedObject.transform.position = transform.position;
+		//_grabbedObject.transform.position = transform.position;
 		_grabbedObject.transform.parent = transform;
 	}
 

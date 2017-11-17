@@ -24,6 +24,7 @@ public class ExperimentManager : MonoBehaviour {
     // Objects for the test
     [SerializeField]
     private GameObject conveyerBelt;
+    public GameObject conveyorTop;
     [SerializeField]
     private GameObject testSwitch;
 
@@ -34,6 +35,8 @@ public class ExperimentManager : MonoBehaviour {
     private GameObject currentTest;
 
     private bool isFirstTest = true;
+
+    
 
 
     // Use this for initialization
@@ -68,6 +71,7 @@ public class ExperimentManager : MonoBehaviour {
         turnningOn = true;
         demoObjects.SetActive(false);
         testSwitch.SetActive(true);
+        this.conveyerBelt.SetActive(true);
         Invoke("TurnOffBrightness", 10);
     }
 
@@ -78,11 +82,16 @@ public class ExperimentManager : MonoBehaviour {
 
     private void RetrieveNextTest()
     {
+        
         if (listOfTests.Count > 0)
         {
             print("calling next test");
             if (this.currentTest.GetComponent<NumberPad>().testDone || this.isFirstTest)
             {
+                if (this.isFirstTest)
+                {
+                    this.conveyorTop.GetComponent<Animator>().Play("ConveyorMove");
+                }
                 this.isFirstTest = false;
                 print("test on its way");
                 currentTest = listOfTests[0];

@@ -38,6 +38,8 @@ public class NumberPad : MonoBehaviour {
 
     public bool testDone = false;
 
+    public GameObject conveyorTop;
+
     private void FixedUpdate()
     {
         if (enter && this.transform.position.x > this.testPosition.x)
@@ -48,12 +50,14 @@ public class NumberPad : MonoBehaviour {
         if (leave && this.transform.position.x > this.endPosition.x)
         {
             this.transform.position = new Vector3(this.transform.position.x - 0.015f, this.transform.position.y, this.transform.position.z);
+            
         }
 
         if(this.transform.position.x <= this.testPosition.x && !testStarted)
         {
             this.testStarted = true;
             StartTimer();
+            this.conveyorTop.GetComponent<Animator>().Play("ConveyorIdle");
         }
     }
 
@@ -106,6 +110,7 @@ public class NumberPad : MonoBehaviour {
     public void EndTest(bool newFile)
     {
         this.leave = true;
+        this.conveyorTop.GetComponent<Animator>().Play("ConveyorMove");
         float speed = this.endTime - this.startTime;
         float accuracy = CalculateAccuracy();
 
@@ -165,7 +170,7 @@ public class NumberPad : MonoBehaviour {
         foreach (FileInfo f in info)
         {
             string name = f.Name;
-            string number = name.Substring(5, 3);
+            string number = name.Substring(5, 3);   
             int fileNum = int.Parse(number);
 
             if(fileNum > lastFile)

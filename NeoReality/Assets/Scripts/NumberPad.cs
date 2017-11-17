@@ -29,17 +29,51 @@ public class NumberPad : MonoBehaviour {
     // The end time for this test
     private float endTime;
 
-	// Use this for initialization
-	void Start () {
+    public Vector3 testPosition;
+    public Vector3 endPosition;
+
+    private bool enter = false;
+    private bool leave = false;
+    private bool testStarted = false;
+
+    public bool testDone = false;
+
+    private void FixedUpdate()
+    {
+        if (enter && this.transform.position.x > this.testPosition.x)
+        {
+            this.transform.position = new Vector3(this.transform.position.x - 0.015f, this.transform.position.y, this.transform.position.z);
+        }
+
+        if (leave && this.transform.position.x > this.endPosition.x)
+        {
+            this.transform.position = new Vector3(this.transform.position.x - 0.015f, this.transform.position.y, this.transform.position.z);
+        }
+
+        if(this.transform.position.x <= this.testPosition.x && !testStarted)
+        {
+            this.testStarted = true;
+            StartTimer();
+        }
+    }
+
+    // Use this for initialization
+    void Start () {
         this.buttonInput = new List<string>();
 	}
 	
+    public void Enter()
+    {
+        this.enter = true;
+    }
+
 
     /// <summary>
     /// Grab the start time for this test
     /// </summary>
     public void StartTimer()
     {
+        print("Timer started");
         this.startTime = Time.time;
     }
 
@@ -61,7 +95,7 @@ public class NumberPad : MonoBehaviour {
     /// <param name="input"></param>
 	public void ButtonInput(string[] input)
     {
-        print("Keypad recieved input: " + input);
+        print("Keypad recieved input: " + input.ToString());
         this.buttonInput.Add(input[0]);
     }
 
@@ -71,10 +105,12 @@ public class NumberPad : MonoBehaviour {
     /// </summary>
     public void EndTest(bool newFile)
     {
+        this.leave = true;
         float speed = this.endTime - this.startTime;
         float accuracy = CalculateAccuracy();
 
         WriteTestToCSV(newFile, speed, accuracy);
+        testDone = true;
     }
     
 
@@ -121,7 +157,6 @@ public class NumberPad : MonoBehaviour {
     {
         // Find the existing files and create a new one with the next id number if necessary
         DirectoryInfo dir = new DirectoryInfo(filePath);
-        print(this.filePath);
         
         FileInfo[] info = dir.GetFiles("*.csv");
 
@@ -130,9 +165,7 @@ public class NumberPad : MonoBehaviour {
         foreach (FileInfo f in info)
         {
             string name = f.Name;
-            print(name);
             string number = name.Substring(5, 3);
-            print(number);
             int fileNum = int.Parse(number);
 
             if(fileNum > lastFile)
@@ -169,7 +202,6 @@ public class NumberPad : MonoBehaviour {
 
         File.AppendAllText(this.filePath + newFileName, data);
 
-        print(newFileName);
 
     }
 

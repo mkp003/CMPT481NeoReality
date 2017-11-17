@@ -33,11 +33,13 @@ public class ExperimentManager : MonoBehaviour {
 
     private GameObject currentTest;
 
+    private bool isFirstTest = true;
+
 
     // Use this for initialization
     void Start () {
         currentTest = listOfTests[0];
-        Invoke("ExitSandbox", 3);
+        Invoke("ExitSandbox", 0.5f);
 	}
 
     private void FixedUpdate()
@@ -76,14 +78,18 @@ public class ExperimentManager : MonoBehaviour {
 
     private void RetrieveNextTest()
     {
-        if (listOfTests.Count > 0 && !this.currentTest.activeInHierarchy)
+        if (listOfTests.Count > 0)
         {
-            currentTest = listOfTests[0];
-            currentTest.SetActive(true);
-            listOfTests.RemoveAt(0);
-            currentTest.SetActive(true);
-            //currentTest.SendMessage("StartTimer");
-            this.currentTest.GetComponent<NumberPad>().StartTimer();
+            print("calling next test");
+            if (this.currentTest.GetComponent<NumberPad>().testDone || this.isFirstTest)
+            {
+                this.isFirstTest = false;
+                print("test on its way");
+                currentTest = listOfTests[0];
+                currentTest.SetActive(true);
+                listOfTests.RemoveAt(0);
+                currentTest.SendMessage("Enter");
+            }
         }
         if(listOfTests.Count == 0)
         {
@@ -93,6 +99,6 @@ public class ExperimentManager : MonoBehaviour {
 
     private void SubmitCurrentTest()
     {
-        this.currentTest.SetActive(false);
+       // this.currentTest.SetActive(false);
     }
 }

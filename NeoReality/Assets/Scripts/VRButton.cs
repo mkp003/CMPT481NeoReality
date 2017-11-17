@@ -52,14 +52,14 @@ public class VRButton : MonoBehaviour
     {
         if (pushIn)
         {
-            this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z + 0.01f);
+            this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z + 0.005f);
         }
 
         if (pushout)
         {
             if (this.transform.position.z > this.originalPos.z)
             {
-                this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z - 0.01f);
+                this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z - 0.005f);
             }
 
         }

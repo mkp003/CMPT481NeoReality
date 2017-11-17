@@ -134,7 +134,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1401481252235496
 GameObject:
   m_ObjectHideFlags: 0
@@ -1702,7 +1702,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1954477227750644}
-  m_Text: '@'
+  m_Text: =
   m_OffsetZ: 0
   m_CharacterSize: 3
   m_LineSpacing: 1
@@ -1723,7 +1723,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1800378797861006}
-  m_Text: '#'
+  m_Text: '&'
   m_OffsetZ: 0
   m_CharacterSize: 3
   m_LineSpacing: 1
@@ -1744,7 +1744,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1466845740505150}
-  m_Text: '-'
+  m_Text: '@'
   m_OffsetZ: 0
   m_CharacterSize: 3
   m_LineSpacing: 1
@@ -1765,7 +1765,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1138074010607450}
-  m_Text: '%  ^  #  @'
+  m_Text: '!  @  -  +'
   m_OffsetZ: 0
   m_CharacterSize: 5
   m_LineSpacing: 1
@@ -1786,7 +1786,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1852274722766158}
-  m_Text: '*'
+  m_Text: +
   m_OffsetZ: 0
   m_CharacterSize: 3
   m_LineSpacing: 1
@@ -1807,7 +1807,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1744662771764134}
-  m_Text: =
+  m_Text: '%'
   m_OffsetZ: 0
   m_CharacterSize: 3
   m_LineSpacing: 1
@@ -1849,7 +1849,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1417868152605360}
-  m_Text: '%'
+  m_Text: ^
   m_OffsetZ: 0
   m_CharacterSize: 3
   m_LineSpacing: 1
@@ -1891,7 +1891,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1255116123859224}
-  m_Text: ^
+  m_Text: '*'
   m_OffsetZ: 0
   m_CharacterSize: 3
   m_LineSpacing: 1
@@ -1912,7 +1912,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1631978036597494}
-  m_Text: +
+  m_Text: '-'
   m_OffsetZ: 0
   m_CharacterSize: 3
   m_LineSpacing: 1
@@ -1946,7 +1946,7 @@ MonoBehaviour:
     autoPushOut: 1
     buttonFunction: ButtonInput
     buttonParameters:
-    - 5
+    - 6
   manager: {fileID: 1378247510369792}
   textObject: {fileID: 0}
   feedback: Push
@@ -1991,12 +1991,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   experimentManager: {fileID: 0}
   filePath: \\cabinet\work$\mkp003\cmpt\cswin\Desktop\
-  testNum: 2
+  testNum: 3
   correctSequence:
-  - 3
-  - 9
-  - 8
-  - 6
+  - 5
+  - 7
+  - 2
+  - 4
 --- !u!114 &114534833776788298
 MonoBehaviour:
   m_ObjectHideFlags: 1

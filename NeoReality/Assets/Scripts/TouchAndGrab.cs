@@ -45,7 +45,7 @@ public class TouchAndGrab : MonoBehaviour
     private bool onCooldown = false;
 
 	[SerializeField]
-	private float cooldownDuration = 0.005f;
+	private float cooldownDuration = 0.5f;
 
     // previous parent of grabbed object
 	private Transform objectsOldParent = null;

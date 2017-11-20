@@ -1169,6 +1169,81 @@ Prefab:
       propertyPath: filePath
       value: /Documents/GitHub/CMPT481NeoReality/TestResults/
       objectReference: {fileID: 0}
+    - target: {fileID: 136957117844832712, guid: fa7a572bb0cf1cb4781f7720f01f7436,
+        type: 2}
+      propertyPath: m_Center.y
+      value: -0.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 136204933711068750, guid: fa7a572bb0cf1cb4781f7720f01f7436,
+        type: 2}
+      propertyPath: m_Center.y
+      value: -0.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 136957377772626682, guid: fa7a572bb0cf1cb4781f7720f01f7436,
+        type: 2}
+      propertyPath: m_Center.y
+      value: -0.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 136700990321415580, guid: fa7a572bb0cf1cb4781f7720f01f7436,
+        type: 2}
+      propertyPath: m_Center.y
+      value: -0.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 136323274429992374, guid: fa7a572bb0cf1cb4781f7720f01f7436,
+        type: 2}
+      propertyPath: m_Center.y
+      value: -0.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 136360427774487960, guid: fa7a572bb0cf1cb4781f7720f01f7436,
+        type: 2}
+      propertyPath: m_Center.y
+      value: -0.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 136943675753183912, guid: fa7a572bb0cf1cb4781f7720f01f7436,
+        type: 2}
+      propertyPath: m_Center.y
+      value: -0.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 136151817458528724, guid: fa7a572bb0cf1cb4781f7720f01f7436,
+        type: 2}
+      propertyPath: m_Center.y
+      value: -0.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 136283113562208046, guid: fa7a572bb0cf1cb4781f7720f01f7436,
+        type: 2}
+      propertyPath: m_Center.y
+      value: -0.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 65748184317758772, guid: fa7a572bb0cf1cb4781f7720f01f7436,
+        type: 2}
+      propertyPath: m_Size.z
+      value: 3.1297927
+      objectReference: {fileID: 0}
+    - target: {fileID: 65748184317758772, guid: fa7a572bb0cf1cb4781f7720f01f7436,
+        type: 2}
+      propertyPath: m_Center.y
+      value: 0.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 65748184317758772, guid: fa7a572bb0cf1cb4781f7720f01f7436,
+        type: 2}
+      propertyPath: m_Center.z
+      value: 0.0064000464
+      objectReference: {fileID: 0}
+    - target: {fileID: 65748184317758772, guid: fa7a572bb0cf1cb4781f7720f01f7436,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 3.0656815
+      objectReference: {fileID: 0}
+    - target: {fileID: 65748184317758772, guid: fa7a572bb0cf1cb4781f7720f01f7436,
+        type: 2}
+      propertyPath: m_Center.x
+      value: 0.21417141
+      objectReference: {fileID: 0}
+    - target: {fileID: 65748184317758772, guid: fa7a572bb0cf1cb4781f7720f01f7436,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 1.741114
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fa7a572bb0cf1cb4781f7720f01f7436, type: 2}
   m_IsPrefabParent: 0

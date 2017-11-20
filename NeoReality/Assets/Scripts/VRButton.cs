@@ -47,9 +47,16 @@ public class VRButton : MonoBehaviour
 
     private Vector3 originalPos;
 
+    private int cooldown = 0;
+
 
     private void FixedUpdate()
     {
+        if (cooldown > 0)
+        {
+            cooldown--;       
+        }
+
         if (pushIn)
         {
             this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z + 0.005f);
@@ -115,28 +122,33 @@ public class VRButton : MonoBehaviour
     /// <param name="val">Whether the button can be activated yet</param>
     public void ButtonClicked(bool val)
     {
-        this.pressed = val;
-        if (val)
+        if (cooldown == 0)
         {
-            if (!(String.IsNullOrEmpty(attributes.buttonFunction)))
+            cooldown += 30;
+            print("Clicked: " + cooldown);
+            this.pressed = val;
+            if (val)
             {
-                if (this.attributes.buttonParameters != null)
+                if (!(String.IsNullOrEmpty(attributes.buttonFunction)))
                 {
-                    this.manager.SendMessage(attributes.buttonFunction, attributes.buttonParameters);
-                }
-                else
-                {
-                    this.manager.SendMessage(attributes.buttonFunction);
-                }
+                    if (this.attributes.buttonParameters != null)
+                    {
+                        this.manager.SendMessage(attributes.buttonFunction, attributes.buttonParameters);
+                    }
+                    else
+                    {
+                        this.manager.SendMessage(attributes.buttonFunction);
+                    }
 
-                if (this.attributes.depressable)
-                {
-                    DepressButton();
-                }
+                    if (this.attributes.depressable)
+                    {
+                        DepressButton();
+                    }
 
-                if (this.attributes.autoPushOut)
-                {
-                    TimedUnpress();
+                    if (this.attributes.autoPushOut)
+                    {
+                        TimedUnpress();
+                    }
                 }
             }
         }

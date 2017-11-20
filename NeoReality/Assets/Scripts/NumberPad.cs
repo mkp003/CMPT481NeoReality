@@ -114,9 +114,16 @@ public class NumberPad : MonoBehaviour {
             this.leave = true;
             this.conveyorTop.GetComponent<Animator>().Play("ConveyorMove");
             float speed = this.endTime - this.startTime;
-            float accuracy = CalculateAccuracy();
+            float numCorrect = CalculateNumberCorrect();
+            float numEntered = this.buttonInput.Count;
+            float accuracy = numCorrect / numEntered;
 
-            WriteTestToCSV(newFile, speed, accuracy);
+            foreach(string s in this.buttonInput)
+            {
+                print(s);
+            }
+
+            WriteTestToCSV(newFile, speed, accuracy, numEntered, numCorrect);
             testDone = true;
         }
         
@@ -127,11 +134,11 @@ public class NumberPad : MonoBehaviour {
     /// Calculate the accuracy for this test
     /// </summary>
     /// <returns>The calculated accuracy for this test</returns>
-    public float CalculateAccuracy()
+    public int CalculateNumberCorrect()
     {
-        float numEntered = this.buttonInput.Count;
+        int numEntered = this.buttonInput.Count;
 
-        float numCorrect = 0;
+        int numCorrect = 0;
 
         int currentAnswer = 0;
 
@@ -148,7 +155,7 @@ public class NumberPad : MonoBehaviour {
                 }
             }
 
-            return numCorrect / numEntered;
+            return numCorrect;
         }
         else
         {
@@ -157,12 +164,14 @@ public class NumberPad : MonoBehaviour {
 
     }
 
+    
+
     /// <summary>
     /// Write the results to a CSV file
     /// </summary>
     /// <param name="speed">The speed for the test</param>
     /// <param name="accuracy">The accuracy for the test</param>
-    public void WriteTestToCSV(bool newFile, float speed, float accuracy)
+    public void WriteTestToCSV(bool newFile, float speed, float accuracy, float numEntered, float numCorrect)
     {
         print("Writing file");
         // Find the existing files and create a new one with the next id number if necessary
@@ -204,12 +213,12 @@ public class NumberPad : MonoBehaviour {
         if (newFile)
         {
             print("Creating new file: " + newFileName);
-            string header = "Test Number" + ',' + "Speed" + ',' + "Accuracy" + System.Environment.NewLine;
+            string header = "Test Number" + ',' + "Speed" + ',' + "Accuracy" +  ',' + "Number Correct" + ',' + "Number Entered" + System.Environment.NewLine;
 
             File.WriteAllText(this.filePath + newFileName, header);
         }
 
-        string data = testNum.ToString() + ',' + speed.ToString() + ',' + accuracy.ToString() + System.Environment.NewLine;
+        string data = testNum.ToString() + ',' + speed.ToString() + ',' + accuracy.ToString() + ',' +  numCorrect.ToString() + ',' + numEntered.ToString() + System.Environment.NewLine;
 
         File.AppendAllText(this.filePath + newFileName, data);
         print("Data written to:  " + newFileName + "   " + data);

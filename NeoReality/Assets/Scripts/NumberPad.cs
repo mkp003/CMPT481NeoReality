@@ -109,13 +109,17 @@ public class NumberPad : MonoBehaviour {
     /// </summary>
     public void EndTest(bool newFile)
     {
-        this.leave = true;
-        this.conveyorTop.GetComponent<Animator>().Play("ConveyorMove");
-        float speed = this.endTime - this.startTime;
-        float accuracy = CalculateAccuracy();
+        if (!this.leave)
+        {
+            this.leave = true;
+            this.conveyorTop.GetComponent<Animator>().Play("ConveyorMove");
+            float speed = this.endTime - this.startTime;
+            float accuracy = CalculateAccuracy();
 
-        WriteTestToCSV(newFile, speed, accuracy);
-        testDone = true;
+            WriteTestToCSV(newFile, speed, accuracy);
+            testDone = true;
+        }
+        
     }
     
 
@@ -136,8 +140,8 @@ public class NumberPad : MonoBehaviour {
         {
 
             foreach (string answer in buttonInput)
-            {
-                if (correctSequence[currentAnswer].Equals(answer))
+            { 
+                if (currentAnswer <= (correctSequence.Count - 1) && correctSequence[currentAnswer].Equals(answer)  )
                 {
                     numCorrect += 1;
                     currentAnswer++;
@@ -160,6 +164,7 @@ public class NumberPad : MonoBehaviour {
     /// <param name="accuracy">The accuracy for the test</param>
     public void WriteTestToCSV(bool newFile, float speed, float accuracy)
     {
+        print("Writing file");
         // Find the existing files and create a new one with the next id number if necessary
         DirectoryInfo dir = new DirectoryInfo(filePath);
         
@@ -198,6 +203,7 @@ public class NumberPad : MonoBehaviour {
 
         if (newFile)
         {
+            print("Creating new file: " + newFileName);
             string header = "Test Number" + ',' + "Speed" + ',' + "Accuracy" + System.Environment.NewLine;
 
             File.WriteAllText(this.filePath + newFileName, header);
@@ -206,7 +212,7 @@ public class NumberPad : MonoBehaviour {
         string data = testNum.ToString() + ',' + speed.ToString() + ',' + accuracy.ToString() + System.Environment.NewLine;
 
         File.AppendAllText(this.filePath + newFileName, data);
-
+        print("Data written to:  " + newFileName + "   " + data);
 
     }
 

@@ -167,7 +167,7 @@ def write_results(results, outpath, file_name, verbose):
         text += " a significant difference in speed based on the visual design (X^2 =" + str(results["Kruskall"][0]) \
                + ", p = " + str(results["Kruskall"][1]) + "). \n\n"
 
-    
+
 
     # if verbose:
     #     print(json.dumps(results))

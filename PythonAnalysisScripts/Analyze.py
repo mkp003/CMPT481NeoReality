@@ -9,6 +9,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.stats as stat
 import getopt
+import sys
+import os
 
 
 def find_all_csvs(dir):
@@ -17,7 +19,12 @@ def find_all_csvs(dir):
     :param dir: The directory to search in
     :return: A list of csv files
     '''
-    pass
+    csv_files = []
+    for file in os.listdir(dir):
+        if file.endswith(".csv"):
+            csv_files.append(dir + '/' + file)
+
+    return csv_files
 
 
 def read_csvs_as_dataframe(csvs):
@@ -26,32 +33,67 @@ def read_csvs_as_dataframe(csvs):
     :param csvs: The list of csv files to read
     :return: A list of dataframes
     '''
-    pass
+    dataframes = []
+
+    for csv in csvs:
+        df = pd.read_csv(csv)
+        dataframes.append(df)
+
+    return dataframes
 
 def separate_datasets(dataframes):
     '''
     Separate the data in the dataframes into different datasets based on trial number
     :param dataframes: A list of dataframes to parse from
     :return: A dictionary of lists In the format
-     {Design: [trial0, trial1, trial2], Texture: [trial3, trial4, trial5], Feedback: [trial6, trial 7, trial 8]}
+     {trial_#_speeds: [values], trial_#_accuracies: [values]}
     '''
-    pass
+
+    datasets = {}
+
+    for df in dataframes:
+        for index, row in df.iterrows():
+            # Get the speed and accuracy for each trial and append it to the list of values for that trial
+            speed_name = "trial_" + str(int(row["Test Number"])) + "_speeds"
+            accuracy_name = "trial_" + str(int(row["Test Number"])) + "_accuracies"
+
+            # Check to see if the key exists
+            if speed_name in datasets.keys():
+                datasets[speed_name].append(row["Speed"])\
+
+            # If not, initialize the list of values
+            else:
+                datasets[speed_name] = [row["Speed"]]
+
+            if accuracy_name in datasets.keys():
+                datasets[accuracy_name].append(row["Accuracy"])
+            else:
+                datasets[accuracy_name] = [row["Accuracy"]]
+
+    return datasets
+
 
 def perform_statistical_analysis(datasets):
     '''
     Perform the statistical tests
-    :param datasets: A list of datasets indexed by their trial number
-    :return: Nothing
+    :param datasets: A list of datasets
+    :return: The statistical values as a dictionary keyed by test name
     '''
-    pass
+    results = {}
 
-    # TODO: perfrom the kruskal wallis test using scipy.stats and write to stats file
+    # Perform Kruskall Wallis test
+    h_val_kruskall, p_val_kruskall = stat.mstats.kruskalwallis(datasets)
 
-    # TODO: get mean and S.D for each trial - append to stats file named by dictionary key
+    results["Kruskall"] = (h_val_kruskall, p_val_kruskall)
 
-    # TODO: For each trial perform a Mann-Whitney test using scipy.stats - append to stats file
+    # get mean and S.D for each trial
+    for i in range(len(datasets)):
+        results["trial_" + str(i) + "_SD"] = np.std(datasets[i])
+        results["trial_" + str(i) + "_mean"] = np.mean(datasets[i])
 
-    # TODO: Write all datasets to a new organized csv file
+    # For each trial perform a Mann-Whitney test using scipy.stats
+
+    
 
     # TODO: Make and save pretty graphs
 
@@ -64,23 +106,62 @@ def write_new_dataset_csv(datasets):
     '''
     pass
 
+def usage():
+    '''
+    Print the usage of this script
+    :return: Nothing
+    '''
+    pass
+    # TODO: print usage
+
 
 def main():
-    pass
 
-# TODO: get command line options
+    input_directory = ''    # The directory to get the csv files from
+    output_directory = ''   # The directory to save output to
 
-# TODO: get all csvs
+    # Try to parse command line options
+    try:
+        opts, args = getopt.getopt(sys.argv[1:], "hi:o:", ["help", "input=", "output="])
 
-# TODO: convert to dataframes
+    # Catch any errors and print them
+    except getopt.GetoptError as err:
+        print(str(err))
+        usage()             # Print the usage for help
+        sys.exit(2)
 
-# TODO: seperate datasets
+    # Check each of the command line arguments
+    for opt, arg in opts:
+        # Print the usage for the script
+        if opt in ("-h", "--help"):
+            usage()
+            sys.exit()
 
-# TODO: perform statistical analysis for designs
+        # Get the input directory for files
+        elif opt in("-i", "--input"):
+            input_directory = arg
 
-# TODO: perfrom stat analysis for textures
+        # Get the output direvtory for files
+        elif opt in("-o", "--output"):
+            output_directory = arg
 
-# TODO: perform stat analysis for feedback
+        # Bad option, show help and exit
+        else:
+            print("Unhandled Option")
+            usage()
+            sys.exit(2)
+
+
+    # Get all csvs in input_directory
+    csvs = find_all_csvs(input_directory)
+
+    # Convert csvs to dataframes
+    dataframes = read_csvs_as_dataframe(csvs)
+
+    # seperate datasets
+    datasets = separate_datasets(dataframes)
+
+    perform_statistical_analysis([datasets['trial_1_speeds'], datasets['trial_2_speeds'], datasets['trial_3_speeds']])
 
 if __name__ == "__main__":
     main()

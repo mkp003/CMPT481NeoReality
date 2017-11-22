@@ -11,6 +11,8 @@ import scipy.stats as stat
 import getopt
 import sys
 import os
+import csv
+import json
 
 
 def find_all_csvs(dir):
@@ -73,10 +75,15 @@ def separate_datasets(dataframes):
     return datasets
 
 
-def perform_statistical_analysis(datasets):
+def perform_statistical_analysis(datasets, labels, out_path, file_name, title, verbose):
     '''
-    Perform the statistical tests
+    Perform the statistical tests and export datasets as graphs
     :param datasets: A list of datasets
+    :param labels: A list of string labels for the datasets
+    :param out_path: The path to save data to
+    :param file_name: Name for the output file NOT including extension
+    :param title: The title for the dataset as a whole for the graph
+    :param verbose: Print results to console and show plots
     :return: The statistical values as a dictionary keyed by test name
     '''
     results = {}
@@ -92,19 +99,81 @@ def perform_statistical_analysis(datasets):
         results["trial_" + str(i) + "_mean"] = np.mean(datasets[i])
 
     # For each trial perform a Mann-Whitney test using scipy.stats
+    for i in range(len(datasets)):
+        for j in range(len(datasets)):
+            if i != j:
+                h_val, p_val = stat.mstats.mannwhitneyu(datasets[i], datasets[j])
+                results["Mann-Whitney_" + str(i) + "_" + str(j)] = (h_val, p_val)
 
-    
+    # Make and save pretty graphs
+    plt.figure()
+    ax = plt.axes()
 
-    # TODO: Make and save pretty graphs
+    # Make a boxplot for the data
+    plt.boxplot(datasets)
+
+    # Set the labels
+    ax.set_xticklabels(labels)
+
+    # Set title
+    plt.title(title)
+
+    plt.savefig(out_path + "/" + file_name + ".png")
+
+    if verbose:
+        plt.show()
+
+    write_new_dataset_csv(datasets, out_path, file_name, labels)
+    write_results(results, out_path, file_name,  verbose)
+
+    return results
 
 
-def write_new_dataset_csv(datasets):
+def write_new_dataset_csv(datasets, outpath, file_name, labels):
     '''
     Write the sorted datasets to a csv
     :param datasets: A list of datasets to write
+    :param outpath: Path  for results
+    :param file_name: File name NOT including extension
+    :param labels: Labels for each dataset
     :return: Nothing
     '''
-    pass
+
+    rows = zip(*datasets)
+
+    file_name += "_dataset"
+    with open(outpath + "/" + file_name + ".csv", 'w') as f:
+        writer = csv.writer(f)
+        writer.writerow(labels)
+        for row in rows:
+            writer.writerow(row)
+
+def write_results(results, outpath, file_name, verbose):
+    '''
+    Write the results to a json file
+    :param results: A dictionary of the results to write
+    :param outpath: The directory to write the file to
+    :param file_name: The name for the file
+    :param verbose: Print the output to the console
+    :return: Nothing
+    '''
+    text = ""
+    text += "A Kruskal-Wallis test revealed "
+
+    if results["Kruskall"][1] >= 0.5:
+        text += " no significant difference in speed based on the visual design (X^2 =" + str(results["Kruskall"][0]) \
+                + ", p = " + str(results["Kruskall"][1]) + "). \n\n"
+    else:
+        text += " a significant difference in speed based on the visual design (X^2 =" + str(results["Kruskall"][0]) \
+               + ", p = " + str(results["Kruskall"][1]) + "). \n\n"
+
+    
+
+    # if verbose:
+    #     print(json.dumps(results))
+    #
+    # with open(outpath + "/" + file_name + ".json", "w") as f:
+    #     f.write(json.dumps(results))
 
 def usage():
     '''
@@ -119,10 +188,11 @@ def main():
 
     input_directory = ''    # The directory to get the csv files from
     output_directory = ''   # The directory to save output to
+    verbose = False
 
     # Try to parse command line options
     try:
-        opts, args = getopt.getopt(sys.argv[1:], "hi:o:", ["help", "input=", "output="])
+        opts, args = getopt.getopt(sys.argv[1:], "hi:o:v", ["help", "input=", "output=", "verbose"])
 
     # Catch any errors and print them
     except getopt.GetoptError as err:
@@ -145,12 +215,19 @@ def main():
         elif opt in("-o", "--output"):
             output_directory = arg
 
+        # Verbose mode
+        elif opt in("-v", "--verbose"):
+            verbose = True
+
         # Bad option, show help and exit
         else:
             print("Unhandled Option")
             usage()
             sys.exit(2)
 
+    if(input_directory == ''):
+        usage()
+        sys.exit(2)
 
     # Get all csvs in input_directory
     csvs = find_all_csvs(input_directory)
@@ -161,7 +238,11 @@ def main():
     # seperate datasets
     datasets = separate_datasets(dataframes)
 
-    perform_statistical_analysis([datasets['trial_1_speeds'], datasets['trial_2_speeds'], datasets['trial_3_speeds']])
+    design_labels = ["Hexagon", "Circle", "Tube"]
+
+    design_speeds = [datasets['trial_1_speeds'], datasets['trial_2_speeds'], datasets['trial_3_speeds']]
+    perform_statistical_analysis(design_speeds, design_labels, output_directory, "design_speeds", "Design Speeds",
+                                 verbose)
 
 if __name__ == "__main__":
     main()

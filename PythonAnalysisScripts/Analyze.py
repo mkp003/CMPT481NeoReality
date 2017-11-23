@@ -75,7 +75,7 @@ def separate_datasets(dataframes):
     return datasets
 
 
-def perform_statistical_analysis(datasets, labels, out_path, file_name, title, verbose):
+def perform_statistical_analysis(datasets, labels, out_path, file_name, title, ylabel, verbose):
     '''
     Perform the statistical tests and export datasets as graphs
     :param datasets: A list of datasets
@@ -83,6 +83,7 @@ def perform_statistical_analysis(datasets, labels, out_path, file_name, title, v
     :param out_path: The path to save data to
     :param file_name: Name for the output file NOT including extension
     :param title: The title for the dataset as a whole for the graph
+    :param ylabel: The text to put on the y axis of the graph
     :param verbose: Print results to console and show plots
     :return: The statistical values as a dictionary keyed by test name
     '''
@@ -114,6 +115,7 @@ def perform_statistical_analysis(datasets, labels, out_path, file_name, title, v
 
     # Set the labels
     ax.set_xticklabels(labels)
+    ax.set_ylabel(ylabel)
 
     # Set title
     plt.title(title)
@@ -158,30 +160,54 @@ def write_results(results, outpath, file_name, verbose):
     :return: Nothing
     '''
     text = ""
-    text += "A Kruskal-Wallis test revealed "
 
-    if results["Kruskall"][1] >= 0.5:
-        text += " no significant difference in speed based on the visual design (X^2 =" + str(results["Kruskall"][0]) \
+    if results["Kruskall"][1] >= 0.05:
+        text += "Kruskall-Wallis revealed no significant difference (X^2 = " + str(results["Kruskall"][0]) \
                 + ", p = " + str(results["Kruskall"][1]) + "). \n\n"
     else:
-        text += " a significant difference in speed based on the visual design (X^2 =" + str(results["Kruskall"][0]) \
+        text += "Kruskall-Wallis revealed a significant difference (X^2 = " + str(results["Kruskall"][0]) \
                + ", p = " + str(results["Kruskall"][1]) + "). \n\n"
 
+    text += "Post hoc Mann-Whitney U tests: \n"
 
+    for i in range(2):
+        for j in range(1,3):
+            if i == j:
+                continue
+            if results["Mann-Whitney_" + str(i) + "_" + str(j)][1] > 0.05:
+                text += "There is no significant difference between test " + str(i) + " and " + str(j) \
+                        + "(U = " + str(results["Mann-Whitney_" + str(i) + "_" + str(j)][0]) \
+                        + ". p = " + str(results["Mann-Whitney_" + str(i) + "_" + str(j)]) + " \n\n"
+            else:
+                text += "There is a significant difference between test " + str(i) + " and " + str(j) \
+                        + "(U = " + str(results["Mann-Whitney_" + str(i) + "_" + str(j)][0]) \
+                        + ". p = " + str(results["Mann-Whitney_" + str(i) + "_" + str(j)]) + " \n\n"
 
-    # if verbose:
-    #     print(json.dumps(results))
-    #
-    # with open(outpath + "/" + file_name + ".json", "w") as f:
-    #     f.write(json.dumps(results))
+    for i in range(3):
+        text += "Trial " + str(i) + " Mean: " + str(results["trial_" + str(i) + "_mean"]) + " \n"
+        text += "Trial " + str(i) + " SD: " + str(results["trial_" + str(i) + "_SD"]) + "\n\n"
+
+    if verbose:
+        print(text)
+
+    with open(outpath + "/" + file_name + ".txt", "w") as f:
+        f.write(text)
 
 def usage():
     '''
     Print the usage of this script
     :return: Nothing
     '''
-    pass
-    # TODO: print usage
+    print("Analyze.py\n")
+    print("Analyze VR research data with statistical analysis methods.\n")
+    print("This script will take in a directory of csv files and parse out the datasets.  It will then perform a "
+          "Kruskal-Wallis test on each dataset and perform post hoc Mann-Whitney U tests on each individual set.")
+    print("")
+    print("Options:")
+    print("     -h:                 Print this help dialog")
+    print("     -i <path>:          Specify the directory to get the data files from")
+    print("     -o <path>:          Specify the directory to save output files to")
+    print("     -v:                 Print output to console and display graphs as well as saving output files")
 
 
 def main():
@@ -225,7 +251,7 @@ def main():
             usage()
             sys.exit(2)
 
-    if(input_directory == ''):
+    if(input_directory == '' or output_directory == ''):
         usage()
         sys.exit(2)
 
@@ -238,11 +264,44 @@ def main():
     # seperate datasets
     datasets = separate_datasets(dataframes)
 
+    # Design stats
     design_labels = ["Hexagon", "Circle", "Tube"]
 
     design_speeds = [datasets['trial_1_speeds'], datasets['trial_2_speeds'], datasets['trial_3_speeds']]
     perform_statistical_analysis(design_speeds, design_labels, output_directory, "design_speeds", "Design Speeds",
-                                 verbose)
+                                 "speed (s)", verbose)
+
+    design_accuracies = [datasets['trial_1_accuracies'], datasets['trial_2_accuracies'], datasets['trial_3_accuracies']]
+    perform_statistical_analysis(design_accuracies, design_labels, output_directory, "design_accuracies", "Design Accuracies",
+                                 "Accuracy (% correct)", verbose)
+
+
+    # Texture Stats
+    texture_labels = ["Rock", "Metal", "Transparent"]
+
+    texture_speeds = [datasets['trial_4_speeds'], datasets['trial_5_speeds'], datasets['trial_6_speeds']]
+    perform_statistical_analysis(texture_speeds, texture_labels, output_directory, "texture_speeds", "Texture Speeds",
+                                 "speed (s)", verbose)
+
+    texture_accuracies = [datasets['trial_4_accuracies'], datasets['trial_5_accuracies'], datasets['trial_6_accuracies']]
+    perform_statistical_analysis(texture_accuracies, texture_labels, output_directory, "texture_accuracies",
+                                 "Texture Accuracies",
+                                 "Accuracy (% correct)", verbose)
+
+    # Feedback Stats
+    feedback_labels = ["None", "Colour", "Audio"]
+
+    feedback_speeds = [datasets['trial_7_speeds'], datasets['trial_8_speeds'], datasets['trial_9_speeds']]
+    perform_statistical_analysis(feedback_speeds, feedback_labels, output_directory, "feedback_speeds", "Feedback Speeds",
+                                 "speed (s)", verbose)
+
+    feedback_accuracies = [datasets['trial_7_accuracies'], datasets['trial_8_accuracies'],
+                          datasets['trial_9_accuracies']]
+    perform_statistical_analysis(feedback_accuracies,  feedback_labels, output_directory, "feedback_accuracies",
+                                 "Feedback Accuracies",
+                                 "Accuracy (% correct)", verbose)
+
+
 
 if __name__ == "__main__":
     main()

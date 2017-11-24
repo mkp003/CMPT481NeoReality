@@ -42,7 +42,7 @@ public class ExperimentManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         currentTest = listOfTests[0];
-        Invoke("ExitSandbox", 180f);
+        Invoke("ExitSandbox", 60f);
 	}
 
     private void FixedUpdate()

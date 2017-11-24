@@ -273,7 +273,7 @@ def main():
 
     design_accuracies = [datasets['trial_1_accuracies'], datasets['trial_2_accuracies'], datasets['trial_3_accuracies']]
     perform_statistical_analysis(design_accuracies, design_labels, output_directory, "design_accuracies", "Design Accuracies",
-                                 "Accuracy (% correct)", verbose)
+                                 "Accuracy (correct/entered)", verbose)
 
 
     # Texture Stats
@@ -286,7 +286,7 @@ def main():
     texture_accuracies = [datasets['trial_4_accuracies'], datasets['trial_5_accuracies'], datasets['trial_6_accuracies']]
     perform_statistical_analysis(texture_accuracies, texture_labels, output_directory, "texture_accuracies",
                                  "Texture Accuracies",
-                                 "Accuracy (% correct)", verbose)
+                                 "Accuracy (correct/entered)", verbose)
 
     # Feedback Stats
     feedback_labels = ["None", "Colour", "Audio"]
@@ -299,7 +299,7 @@ def main():
                           datasets['trial_9_accuracies']]
     perform_statistical_analysis(feedback_accuracies,  feedback_labels, output_directory, "feedback_accuracies",
                                  "Feedback Accuracies",
-                                 "Accuracy (% correct)", verbose)
+                                 "Accuracy (correct/entered)", verbose)
 
 
 

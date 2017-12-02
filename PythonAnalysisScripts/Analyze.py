@@ -302,7 +302,7 @@ def create_large_graph(datasets, labels, dataset_names, plot_title, y_label,  ve
 
     plt.xlim(0, 12)
 
-    plt.savefig(plot_title + "_large_graph.png", dpi=300)
+    plt.savefig(outpath + plot_title + "_large_graph.png", dpi=300)
 
     if verbose:
         plt.show()
@@ -418,7 +418,7 @@ def main():
     all_labels = design_labels + texture_labels + feedback_labels
 
     create_large_graph([design_speeds, texture_speeds, feedback_speeds],
-                       all_labels, ["Designs", "Textures", "Feedback Types"], "Speeds", "Time (s)", verbose)
+                       all_labels, ["Designs", "Textures", "Feedback Types"], "Speeds", "Time (s)", verbose, output_directory)
 
     create_large_graph([design_accuracies, texture_accuracies, feedback_accuracies],
                        all_labels, ["Designs", "Textures", "Feedback Types"], "Accuracies",

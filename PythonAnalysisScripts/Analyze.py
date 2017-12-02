@@ -75,6 +75,36 @@ def separate_datasets(dataframes):
     return datasets
 
 
+def set_box_colours(bp, colours):
+    """
+    Set the colours of a given boxplot
+    :param colours: Colours to use for the plots
+    :param bp: The box plot to change colours for
+    :return: Nothing
+    """
+    plt.setp(bp['boxes'][0], color=colours[0])
+    plt.setp(bp['caps'][0], color=colours[0])
+    plt.setp(bp['caps'][1], color=colours[0])
+    plt.setp(bp['whiskers'][0], color=colours[0])
+    plt.setp(bp['whiskers'][1], color=colours[0])
+    plt.setp(bp['medians'][0], color=colours[0])
+
+    plt.setp(bp['boxes'][1], color=colours[1])
+    plt.setp(bp['caps'][2], color=colours[1])
+    plt.setp(bp['caps'][3], color=colours[1])
+    plt.setp(bp['whiskers'][2], color=colours[1])
+    plt.setp(bp['whiskers'][3], color=colours[1])
+    plt.setp(bp['medians'][1], color=colours[1])
+
+    plt.setp(bp['boxes'][2], color=colours[2])
+    plt.setp(bp['caps'][4], color=colours[2])
+    plt.setp(bp['caps'][5], color=colours[2])
+    plt.setp(bp['whiskers'][4], color=colours[2])
+    plt.setp(bp['whiskers'][5], color=colours[2])
+    plt.setp(bp['medians'][2], color=colours[2])
+
+
+
 def perform_statistical_analysis(datasets, labels, out_path, file_name, title, ylabel, verbose):
     '''
     Perform the statistical tests and export datasets as graphs
@@ -193,6 +223,90 @@ def write_results(results, outpath, file_name, verbose):
     with open(outpath + "/" + file_name + ".txt", "w") as f:
         f.write(text)
 
+def get_colour(num):
+
+    if num == 1:
+        return 'darkgreen'
+    elif num ==2:
+        return 'violet'
+    elif num == 3:
+        return 'maroon'
+    elif num == 5:
+        return 'blue'
+    elif num == 6:
+        return 'coral'
+    elif num == 7:
+        return 'green'
+    elif num == 9:
+        return 'indigo'
+    elif num == 10:
+        return 'orange'
+    elif num == 11:
+        return 'sienna'
+    else:
+        return 'w'
+
+def create_large_graph(datasets, labels, dataset_names, plot_title, y_label,  verbose, outpath):
+    """
+    Create one graph for all three test categories
+    :param datasets: The datasets to plot
+    :param labels: The labels for each of the datasets
+    :param dataset_names: The names of the dataset categories
+    :param plot_title: The title for the plot
+    :param y_label: The label for the y axis
+    :param verbose: Display the plot
+    :param outpath: The directory to save the plot to
+    :return: Nothing
+    """
+
+    ax = plt.axes()
+
+    i = 1
+    j = 2
+    k = 3
+    for data in datasets:
+        bp = plt.boxplot(data, positions=[i, j, k], widths=0.6)
+        set_box_colours(bp, [get_colour(i),get_colour(j),get_colour(k)])
+
+        i += 4
+        j += 4
+        k += 4
+
+
+    ax.set_xticklabels(dataset_names)
+    ax.set_xticks([2, 6, 10])
+
+    h1, = plt.plot([1, 1], get_colour(1))
+    h2, = plt.plot([1, 1], get_colour(2))
+    h3, = plt.plot([1, 1], get_colour(3))
+    h4, = plt.plot([1, 1], get_colour(5))
+    h5, = plt.plot([1, 1], get_colour(6))
+    h6, = plt.plot([1, 1], get_colour(7))
+    h7, = plt.plot([1, 1], get_colour(9))
+    h8, = plt.plot([1, 1], get_colour(10))
+    h9, = plt.plot([1, 1], get_colour(11))
+
+    plt.legend((h1, h2, h3, h4, h5, h6, h7, h8, h9), labels)
+    plt.title(plot_title)
+    plt.ylabel(y_label)
+
+    h1.set_visible(False)
+    h2.set_visible(False)
+    h3.set_visible(False)
+    h4.set_visible(False)
+    h5.set_visible(False)
+    h6.set_visible(False)
+    h7.set_visible(False)
+    h8.set_visible(False)
+    h9.set_visible(False)
+
+    plt.xlim(0, 12)
+
+    plt.savefig(plot_title + "_large_graph.png", dpi=300)
+
+    if verbose:
+        plt.show()
+
 def usage():
     '''
     Print the usage of this script
@@ -269,7 +383,7 @@ def main():
 
     design_speeds = [datasets['trial_1_speeds'], datasets['trial_2_speeds'], datasets['trial_3_speeds']]
     perform_statistical_analysis(design_speeds, design_labels, output_directory, "design_speeds", "Design Speeds",
-                                 "speed (s)", verbose)
+                                 "Time (s)", verbose)
 
     design_accuracies = [datasets['trial_1_accuracies'], datasets['trial_2_accuracies'], datasets['trial_3_accuracies']]
     perform_statistical_analysis(design_accuracies, design_labels, output_directory, "design_accuracies", "Design Accuracies",
@@ -281,7 +395,7 @@ def main():
 
     texture_speeds = [datasets['trial_4_speeds'], datasets['trial_5_speeds'], datasets['trial_6_speeds']]
     perform_statistical_analysis(texture_speeds, texture_labels, output_directory, "texture_speeds", "Texture Speeds",
-                                 "speed (s)", verbose)
+                                 "Time (s)", verbose)
 
     texture_accuracies = [datasets['trial_4_accuracies'], datasets['trial_5_accuracies'], datasets['trial_6_accuracies']]
     perform_statistical_analysis(texture_accuracies, texture_labels, output_directory, "texture_accuracies",
@@ -293,13 +407,22 @@ def main():
 
     feedback_speeds = [datasets['trial_7_speeds'], datasets['trial_8_speeds'], datasets['trial_9_speeds']]
     perform_statistical_analysis(feedback_speeds, feedback_labels, output_directory, "feedback_speeds", "Feedback Speeds",
-                                 "speed (s)", verbose)
+                                 "Time (s)", verbose)
 
     feedback_accuracies = [datasets['trial_7_accuracies'], datasets['trial_8_accuracies'],
                           datasets['trial_9_accuracies']]
     perform_statistical_analysis(feedback_accuracies,  feedback_labels, output_directory, "feedback_accuracies",
                                  "Feedback Accuracies",
                                  "Accuracy (correct/entered)", verbose)
+
+    all_labels = design_labels + texture_labels + feedback_labels
+
+    create_large_graph([design_speeds, texture_speeds, feedback_speeds],
+                       all_labels, ["Designs", "Textures", "Feedback Types"], "Speeds", "Time (s)", verbose)
+
+    create_large_graph([design_accuracies, texture_accuracies, feedback_accuracies],
+                       all_labels, ["Designs", "Textures", "Feedback Types"], "Accuracies",
+                       "Accuracy (#correct/#entered)", verbose, output_directory)
 
 
 

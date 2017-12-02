@@ -1,0 +1,18 @@
+Kruskall-Wallis revealed a significant difference (X^2 = 19.2168421053, p = 6.71607839715e-05). 
+
+Post hoc Mann-Whitney U tests: 
+There is a significant difference between test 0 and 1(U = 116.0. p = (116.0, 0.00014297825629271742) 
+
+There is a significant difference between test 0 and 2(U = 119.0. p = (119.0, 0.00018057345585796415) 
+
+There is no significant difference between test 1 and 2(U = 309.0. p = (309.0, 0.953582510349677) 
+
+Trial 0 Mean: 27.05680096 
+Trial 0 SD: 17.6020713766
+
+Trial 1 Mean: 13.7663982 
+Trial 1 SD: 5.32230548036
+
+Trial 2 Mean: 13.84719856 
+Trial 2 SD: 5.28665684424
+

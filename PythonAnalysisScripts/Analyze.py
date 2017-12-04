@@ -133,7 +133,7 @@ def perform_statistical_analysis(datasets, labels, out_path, file_name, title, y
     for i in range(len(datasets)):
         for j in range(len(datasets)):
             if i != j:
-                h_val, p_val = stat.mstats.mannwhitneyu(datasets[i], datasets[j])
+                h_val, p_val = stat.mannwhitneyu(datasets[i], datasets[j])
                 results["Mann-Whitney_" + str(i) + "_" + str(j)] = (h_val, p_val)
 
     # Make and save pretty graphs
@@ -172,7 +172,6 @@ def write_new_dataset_csv(datasets, outpath, file_name, labels):
     '''
 
     rows = zip(*datasets)
-
     file_name += "_dataset"
     with open(outpath + "/" + file_name + ".csv", 'w') as f:
         writer = csv.writer(f)
@@ -424,7 +423,7 @@ def main():
                        all_labels, ["Designs", "Textures", "Feedback Types"], "Accuracies",
                        "Accuracy (#correct/#entered)", verbose, output_directory)
 
-
+    print(design_accuracies)
 
 if __name__ == "__main__":
     main()

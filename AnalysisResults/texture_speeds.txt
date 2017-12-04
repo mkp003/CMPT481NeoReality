@@ -1,11 +1,11 @@
 Kruskall-Wallis revealed no significant difference (X^2 = 5.74816108796, p = 0.0564680355174). 
 
 Post hoc Mann-Whitney U tests: 
-There is no significant difference between test 0 and 1(U = 258.0. p = (258.0, 0.29474041360785508) 
+There is no significant difference between test 0 and 1(U = 258.0. p = (258.0, 0.14737020680392754) 
 
-There is a significant difference between test 0 and 2(U = 190.5. p = (190.5, 0.018395507739083727) 
+There is a significant difference between test 0 and 2(U = 190.5. p = (190.5, 0.0091977538695418703) 
 
-There is no significant difference between test 1 and 2(U = 242.5. p = (242.5, 0.17748783218604058) 
+There is no significant difference between test 1 and 2(U = 242.5. p = (242.5, 0.088743916093020236) 
 
 Trial 0 Mean: 12.74639948 
 Trial 0 SD: 4.67064845883
